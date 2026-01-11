@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TheDevKing6 — Futuristic Roblox Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Exo+2:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Exo 2',sans-serif;
+  background:radial-gradient(circle at top left,#020617,#00010a 80%);
+  color:#cfd9ff;
+  overflow-x:hidden;
+  position:relative;
+}
+canvas#bgCanvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;}
+h1,h2,h3,h4,.logo,nav a{font-family:'Orbitron',sans-serif;letter-spacing:1px;}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;background:rgba(5,10,25,0.85);backdrop-filter:blur(15px);
+border-bottom:1px solid rgba(0,255,255,0.15);z-index:100;}
+.nav-container{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:.8rem 1.5rem;}
+.logo{font-size:1.4rem;font-weight:700;background:linear-gradient(90deg,#00f6ff,#00b7ff,#66ffff);
+-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-transform:lowercase;}
+.nav-links{list-style:none;display:flex;gap:1.5rem;}
+.nav-links a{position:relative;color:#b8c8ff;text-decoration:none;font-size:.9rem;transition:color .3s ease;}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-4px;width:100%;height:2px;background:linear-gradient(90deg,#00eaff,#007bff);transform:scaleX(0);transform-origin:right;transition:transform .3s ease;}
+.nav-links a:hover{color:#00eaff;}
+.nav-links a:hover::after{transform:scaleX(1);transform-origin:left;}
+.btn-gradient{background:linear-gradient(90deg,#00f0ff,#007bff);color:#020617;padding:.6rem 1.2rem;border-radius:.5rem;text-decoration:none;font-weight:700;box-shadow:0 0 10px rgba(0,255,255,.4);transition:all .3s ease;}
+.btn-gradient:hover{box-shadow:0 0 25px rgba(0,255,255,.7),0 0 50px rgba(0,170,255,.4);transform:translateY(-2px);}
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:8rem 1.5rem 4rem;}
+.hero-content{max-width:1100px;display:flex;flex-wrap:wrap;gap:3rem;align-items:center;justify-content:center;}
+.hero-text{flex:1 1 500px;}
+.tag{display:inline-block;background:rgba(0,238,255,0.1);color:#00eaff;padding:.3rem .8rem;border-radius:1rem;font-size:.75rem;letter-spacing:2px;}
+h1{font-size:3rem;margin-top:.8rem;background:linear-gradient(90deg,#00f6ff,#5cfaff,#6ee7ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero p{color:#a7b6ff;margin-top:1rem;line-height:1.6;}
+.subtext{font-size:.9rem;color:#8fa4ff;}
+.buttons{margin-top:1.5rem;display:flex;gap:1rem;flex-wrap:wrap;}
+.btn-outline{border:1px solid #00eaff;color:#00eaff;padding:.6rem 1.2rem;border-radius:.5rem;text-decoration:none;font-weight:600;transition:all .3s ease;}
+.btn-outline:hover{background:#00eaff;color:#020617;box-shadow:0 0 20px #00eaff;}
+.profile-card{flex:0 1 320px;background:rgba(0,255,255,0.03);border:1px solid rgba(0,255,255,0.1);border-radius:1rem;padding:1.5rem;box-shadow:0 0 25px rgba(0,255,255,0.05);}
+.profile-card h3{color:#7ad8ff;font-size:.9rem;margin-bottom:1rem;}
+.profile-card h4{font-size:1.2rem;color:#fff;}
+.profile-card p{color:#b8c8ff;font-size:.9rem;margin-bottom:1.5rem;}
+.card-stats{display:flex;gap:1rem;}
+.stat{background:rgba(0,255,255,0.05);border:1px solid rgba(0,255,255,0.1);border-radius:.7rem;flex:1;text-align:center;padding:.8rem;color:#80eaff;}
+/* SECTION BASE */
+.section{padding:6rem 1.5rem;max-width:1100px;margin:auto;text-align:center;}
+.section h2{font-family:'Orbitron';font-size:1.8rem;color:#00faff;margin-bottom:1.5rem;}
+/* ABOUT */
+#about p{max-width:800px;margin:auto;color:#a7b6ff;line-height:1.6;}
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;margin-top:2rem;}
+.skill-card{background:rgba(255,255,255,0.03);border:1px solid rgba(0,255,255,0.07);border-radius:1rem;padding:1.5rem;transition:0.3s ease;}
+.skill-card:hover{transform:translateY(-5px);box-shadow:0 0 25px rgba(0,255,255,0.2);}
+.skill-card h3{color:#9efeff;margin-bottom:.5rem;}
+.skill-card ul{list-style:none;color:#a4b6ff;font-size:.9rem;text-align:left;}
+/* PROJECTS */
+.projects-line{display:flex;justify-content:center;align-items:stretch;gap:1.5rem;margin-top:2rem;flex-wrap:nowrap;overflow:hidden;}
+.project-card{flex:1;background:rgba(0,255,255,0.03);border:1px solid rgba(0,255,255,0.07);border-radius:1rem;overflow:hidden;transition:all .4s cubic-bezier(.25,.8,.25,1);position:relative;}
+.project-card video{width:100%;height:180px;object-fit:cover;opacity:0;transition:opacity .5s ease,filter .5s ease;filter:blur(6px);}
+.project-card video[src]{opacity:.9;filter:blur(0);}
+.project-card .info{padding:1rem;text-align:left;}
+.project-card h3{color:#9efeff;margin-bottom:.4rem;}
+.project-card p{color:#a4b6ff;font-size:.9rem;}
+.project-card:hover{box-shadow:0 0 25px rgba(0,255,255,.25);}
+.project-card:hover::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at center,rgba(0,255,255,.25)0%,transparent70%);}
+/* REVIEWS */
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-top:2rem;}
+.review{background:rgba(255,255,255,0.03);border:1px solid rgba(0,255,255,0.07);border-radius:1rem;padding:1.5rem;color:#a8caff;}
+.review strong{color:#00faff;}
+/* CONTACT */
+.contact p{max-width:600px;margin:0 auto 1.5rem;color:#a8caff;}
+footer{text-align:center;padding:2rem;font-size:.9rem;color:#7085b8;}
+.fade-in{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease;}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+<canvas id="bgCanvas"></canvas>
+<nav>
+  <div class="nav-container">
+    <h1 class="logo">TheDev<span>King6</span></h1>
+    <ul class="nav-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="btn-gradient">Hire Me</a>
+  </div>
+</nav>
+
+<section id="hero" class="hero fade-in">
+  <div class="hero-content">
+    <div class="hero-text">
+      <span class="tag">FULL-STACK ROBLOX DEVELOPER</span>
+      <h1>Hi, I’m TheDevKing6.</h1>
+      <p>I build performant Roblox systems — gameplay, UI, backend, datastore optimization.</p>
+      <p class="subtext">3+ years of scripting experience focused on scalability, reliability, and immersion.</p>
+      <div class="buttons">
+        <a href="#projects" class="btn-gradient">🚀 View Projects</a>
+        <a href="https://github.com/TheDevKing6" target="_blank" class="btn-outline">GitHub</a>
+      </div>
+    </div>
+    <div class="profile-card">
+      <h3>PROFILE SNAPSHOT</h3>
+      <h4>TheDevKing6</h4>
+      <p>Roblox Lua Developer · Systems Architect</p>
+      <div class="card-stats">
+        <div class="stat"><strong>3+ Years</strong><br>Experience</div>
+        <div class="stat"><strong>15+</strong><br>Projects</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="section fade-in">
+  <h2>About Me</h2>
+  <p>I’m <strong>TheDevKing6</strong>, a passionate full-stack Roblox developer who loves transforming ideas into efficient, fun, and immersive experiences. Whether I’m crafting complex gameplay systems, modular UI frameworks, or scalable backend infrastructure, I aim for both technical excellence and player satisfaction. My focus is on creating reliable code that keeps games running smoothly — no matter how large the audience grows.</p>
+</section>
+
+<section id="skills" class="section fade-in">
+  <h2>Core Skills</h2>
+  <div class="skills-grid">
+    <div class="skill-card"><h3>💻 Core Roblox Development</h3><ul><li>Luau / Roblox Lua</li><li>Client–Server Communication</li><li>ModuleScripts (OOP)</li><li>Optimization & Memory Management</li></ul></div>
+    <div class="skill-card"><h3>🎮 Gameplay & Systems</h3><ul><li>Combat & AI Systems</li><li>Inventory & Shop Frameworks</li><li>UI Logic Systems</li><li>Event-driven Architecture</li></ul></div>
+    <div class="skill-card"><h3>💾 Data & Backend</h3><ul><li>ProfileService / DataStore2</li><li>Secure Saving / Autosave</li><li>MemoryStore Integration</li><li>Error Recovery Logic</li></ul></div>
+  </div>
+</section>
+
+<section id="projects" class="section fade-in">
+  <h2>Projects & Evidence</h2>
+  <div class="projects-line">
+    <div class="project-card"><video data-src="media/LeaderboardSystem.mp4" muted loop playsinline></video><div class="info"><h3>📋 Leaderboard Event Manager</h3><p>Handles RemoteEvent calls and uploads data to a real-time, server-side leaderboard through a modular script architecture separating front-end and back-end logic.</p></div></div>
+    <div class="project-card"><video data-src="media/SettingsMenu.mp4" muted loop playsinline></video><div class="info"><h3>💾 Realtime Client-Sided Settings Manager</h3><p>Handles button press events to manage client-sided settings through a sleek, modular user interface.</p></div></div>
+    <div class="project-card"><video data-src="media/PartDetectionSystem.mp4" muted loop playsinline></video><div class="info"><h3>🚦 Visualised Raycast-Based Obstacle Detection System</h3><p>A real-time raycast-based system that detects obstacles in the environment and visually renders detection rays and hit points for easy debugging, tuning, and demonstration of collision awareness logic.</p></div></div>
+  </div>
+</section>
+
+<section id="reviews" class="section fade-in">
+  <h2>A Clients Testimonial:</h2>
+  <div class="reviews-grid">
+    <div class="review">💬 “DevKing was able to apply his raycast system he had made into a very creative form to fit my shooter style game with advanced mechanisms so players can see where they are aiming, and/or who is aiming at them. He has been the fastest dev I have worked with, finished it in under an hour or less I can't even remember because it was so fast. 10/10 .”<br><strong>— @Xoi</strong><br><h5>*See Work Above*</h5></div>
+  </div>
+</section>
+
+<section id="contact" class="section contact fade-in">
+  <h2>Let’s Build Something Epic</h2>
+  <p>I’m open for commissions and collaborations. If you need a passionate developer who delivers quality and clarity — let’s talk!</p>
+  <a href="mailto:your@email.com" class="btn-gradient">💌 Contact Me</a>
+</section>
+
+<footer>© 2026 TheDevKing6 — Coded for TheDevKing6 by TheDevKing6</footer>
+
+<script>
+/* === SECTION FADE-IN === */
+const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.2});
+document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+/* === PARTICLE BACKGROUND === */
+const canvas=document.getElementById("bgCanvas"),ctx=canvas.getContext("2d");
+let w,h,particles,mouse={x:0,y:0};
+function resize(){w=canvas.width=window.innerWidth;h=canvas.height=window.innerHeight;}
+window.addEventListener("resize",resize);
+window.addEventListener("mousemove",e=>{mouse.x=e.clientX;mouse.y=e.clientY;});
+function init(){resize();particles=Array.from({length:80}).map(()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*2,dx:(Math.random()-.5)*.5,dy:(Math.random()-.5)*.5}));}
+function animate(){ctx.clearRect(0,0,w,h);
+for(let p of particles){const dx=(mouse.x/w-.5)*0.3,dy=(mouse.y/h-.5)*0.3;ctx.beginPath();ctx.arc(p.x+dx*p.r*50,p.y+dy*p.r*50,p.r,0,Math.PI*2);
+ctx.fillStyle="rgba(0,255,255,0.35)";ctx.shadowBlur=15;ctx.shadowColor="#00ffff";ctx.fill();p.x+=p.dx;p.y+=p.dy;
+if(p.x<0||p.x>w)p.dx*=-1;if(p.y<0||p.y>h)p.dy*=-1;}requestAnimationFrame(animate);}
+init();animate();
+/* === PROJECT LINE INTERACTION === */
+const cards=document.querySelectorAll(".project-card");const base=1,grow=1.8,shrink=0.7;
+cards.forEach(card=>{card.addEventListener("mouseenter",()=>cards.forEach(c=>c.style.flex=c===card?grow:shrink));card.addEventListener("mouseleave",()=>cards.forEach(c=>c.style.flex=base));});
+/* === SMOOTH SCROLL === */
+document.querySelectorAll('a[href^="#"]').forEach(link=>{link.addEventListener("click",e=>{const t=document.querySelector(link.getAttribute("href"));if(t){e.preventDefault();window.scrollTo({top:t.offsetTop-60,behavior:"smooth"});}});});
+/* === LAZY LOAD VIDEOS === */
+const lazyVideos=document.querySelectorAll('video[data-src]');
+const videoObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{const video=entry.target;
+if(entry.isIntersecting){if(!video.src){video.src=video.getAttribute('data-src');video.load();}
+video.play().catch(()=>{});}else{video.pause();}});},{threshold:0.3});
+lazyVideos.forEach(v=>videoObserver.observe(v));
+</script>
+</body>
+</html>
