@@ -4,8 +4,300 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TheDevKing6 | Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cloudflare.com">
+    
+    <style>
+        @import url('https://googleapis.com');
+
+        :root {
+            --bg-dark: #08080a;
+            --bg-card: #0f0f13;
+            --accent-orange: #ff5500;
+            --accent-glow: rgba(255, 85, 0, 0.15);
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border-color: #1e1e24;
+            --font-cyber: 'Orbitron', sans-serif;
+            --font-mono: 'Share Tech Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-mono);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Cyber Background Effects */
+        .glow-bg {
+            position: fixed;
+            top: -10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 400px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .scanlines {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.4) 50%);
+            background-size: 100% 4px;
+            z-index: 1000;
+            pointer-events: none;
+            opacity: 0.4;
+        }
+
+        /* Header & Nav */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(8, 8, 10, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-cyber);
+            font-size: 1.4rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--accent-orange);
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent-orange);
+            text-shadow: 0 0 8px var(--accent-glow);
+        }
+
+        /* Layout Structural Blocks */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 8rem 2rem 4rem 2rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Hero Section */
+        #hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 2rem;
+            margin-top: 4rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255, 85, 0, 0.05);
+            border: 1px solid rgba(255, 85, 0, 0.3);
+            color: var(--accent-orange);
+            padding: 0.4rem 1.2rem;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+
+        #hero h1 {
+            font-family: var(--font-cyber);
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            font-family: var(--font-cyber);
+            padding: 0.8rem 1.8rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .primary-btn {
+            background: var(--accent-orange);
+            color: var(--bg-dark);
+            box-shadow: 0 4px 20px var(--accent-glow);
+            margin-right: 1rem;
+        }
+
+        .secondary-btn {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+        }
+
+        .secondary-btn:hover {
+            border-color: var(--accent-orange);
+            box-shadow: inset 0 0 8px var(--accent-glow);
+        }
+
+        /* Content Elements */
+        .section-title {
+            font-family: var(--font-cyber);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent-orange);
+            margin-bottom: 2rem;
+        }
+
+        .card, .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover, .project-card:hover {
+            border-color: rgba(255, 85, 0, 0.4);
+            box-shadow: 0 0 15px rgba(255, 85, 0, 0.05);
+        }
+
+        .card h3, .project-card h3 {
+            font-family: var(--font-cyber);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+        }
+
+        .card p, .project-card p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* Skills Layout */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .skill-tag {
+            background: #13131a;
+            border: 1px solid var(--border-color);
+            padding: 0.6rem 1.2rem;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+
+        .skill-tag:hover {
+            border-color: var(--accent-orange);
+            color: var(--accent-orange);
+        }
+
+        /* Projects Specific */
+        .project-card {
+            position: relative;
+        }
+
+        .project-status {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-orange);
+            font-weight: 700;
+        }
+
+        /* Contact */
+        .contact-card {
+            text-align: center;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            font-family: var(--font-cyber);
+            font-size: 0.9rem;
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-item:hover {
+            color: var(--accent-orange);
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
 <body>
     <div class="scanlines"></div>
@@ -49,7 +341,6 @@
                 </div>
             </div>
         </section>
-
         <section id="skills" class="container">
             <h2 class="section-title">02. Core Tech Stack</h2>
             <div class="skills-grid">
@@ -94,6 +385,34 @@
         <p>&copy; 2026 TheDevKing6. All system operations logged.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Dynamic Navigation Intersection Engine
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        const observerOptions = {
+            root: null,
+            threshold: 0.3,
+            rootMargin: "-10% 0px -40% 0px"
+        };
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const activeId = entry.target.getAttribute('id');
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${activeId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            sectionObserver.observe(section);
+        });
+    </script>
 </body>
 </html>
