@@ -117,21 +117,6 @@
             padding: clamp(4rem, 10vw, 8rem) 1.5rem clamp(2rem, 5vw, 4rem) 1.5rem;
         }
 
-        /* Showcase Horizontal Grid Layout */
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-        }
-
-        @media (max-width: 900px) {
-            .grid-3 {
-                grid-template-columns: 1fr;
-                gap: 2.5rem;
-            }
-        }
-
-        /* Hero Layout Configuration */
         #hero {
             min-height: 90vh;
             display: flex;
@@ -151,10 +136,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 1.5rem;
-            max-width: 100%;
-            word-wrap: break-word;
         }
-
         #hero h1 {
             font-family: var(--font-cyber);
             font-size: clamp(2.2rem, 7vw, 4rem);
@@ -178,6 +160,7 @@
             flex-wrap: wrap;
             gap: 1rem;
         }
+
         .btn {
             display: inline-block;
             font-family: var(--font-cyber);
@@ -192,14 +175,10 @@
         }
 
         @media (max-width: 480px) {
-            .btn {
-                width: 100%;
-            }
+            .btn { width: 100%; }
         }
 
-        .btn:hover {
-            transform: translateY(-2px);
-        }
+        .btn:hover { transform: translateY(-2px); }
 
         .primary-btn {
             background: var(--accent-orange);
@@ -252,7 +231,6 @@
             gap: 1.5rem;
         }
 
-        /* Showcase Cards CSS Layout rules */
         .project-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -281,12 +259,7 @@
             border: 1px solid #16161c;
         }
 
-        video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            pointer-events: none;
-        }
+        video { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
 
         .cyber-progress-bar {
             position: absolute;
@@ -314,113 +287,45 @@
             color: var(--text-main);
         }
 
-        .project-info p {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            line-height: 1.4;
-        }
+        .project-info p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.4; }
 
-        /* TOS Terminal Layout Frame */
-        .toc-terminal {
-            background: #050507;
-            border: 1px solid var(--border-color);
-            border-left: 3px solid var(--accent-orange);
-            padding: 1.5rem;
-            font-family: var(--font-mono);
-        }
-
-        .toc-line {
-            margin-bottom: 1.2rem;
+        .history-card {
             display: flex;
-            gap: 0.8rem;
-        }
-
-        .toc-line:last-child {
-            margin-bottom: 0;
-        }
-
-        .toc-tag {
-            color: var(--accent-orange);
-            font-weight: bold;
-            flex-shrink: 0;
-            user-select: none;
-        }
-
-        .toc-text {
-            color: var(--text-main);
-            font-size: 0.95rem;
-        }
-
-        .custom-fullscreen-container {
-            position: fixed;
-            inset: 0;
-            background: rgba(4, 4, 6, 0.98);
-            z-index: 9999;
-            display: none;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-        }
-
-        .custom-fullscreen-container.active {
-            display: flex;
-        }
-
-        .fullscreen-video-wrapper {
-            width: 90vw;
-            max-width: 1200px;
-            aspect-ratio: 16 / 9;
-            position: relative;
+            background: var(--bg-card);
             border: 1px solid var(--border-color);
-            background: #000;
+            padding: 1.5rem 2rem;
+            margin-bottom: 1rem;
+            transition: all 0.2s;
         }
 
-        .custom-fullscreen-container video {
-            pointer-events: auto;
-        }
-
-        .close-fullscreen-btn {
-            position: absolute;
-            top: -50px;
-            right: 0;
-            width: 40px;
-            height: 40px;
-            background: var(--accent-orange);
-            border: none;
-            color: #ffffff;
-            font-size: 1.2rem;
-            font-weight: bold;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 12px var(--accent-glow);
-            transition: transform 0.2s;
-        }
-
-        .close-fullscreen-btn:hover {
-            transform: scale(1.1);
-        }
+        .history-card:hover { border-color: var(--accent-orange); }
+        .history-info h3 { font-family: var(--font-cyber); font-size: 1.2rem; text-transform: uppercase; }
+        .history-info p { color: var(--text-muted); font-size: 0.9rem; margin-top: 0.2rem; }
+        .history-date { font-family: var(--font-cyber); color: var(--accent-orange); font-size: 0.95rem; font-weight: 700; }
 
         @media (max-width: 600px) {
-            nav {
-                flex-direction: column;
-                gap: 0.8rem;
-                text-align: center;
-            }
-            .close-fullscreen-btn {
-                top: 10px;
-                right: 10px;
-                z-index: 10002;
-            }
+            .history-card { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+            nav { flex-direction: column; gap: 0.8rem; text-align: center; }
         }
 
+        .toc-terminal { background: #050507; border: 1px solid var(--border-color); border-left: 3px solid var(--accent-orange); padding: 1.5rem; }
+        .toc-line { margin-bottom: 1.2rem; display: flex; gap: 0.8rem; }
+        .toc-line:last-child { margin-bottom: 0; }
+        .toc-tag { color: var(--accent-orange); font-weight: bold; flex-shrink: 0; user-select: none; }
+        .toc-text { color: var(--text-main); font-size: 0.95rem; }
+
+        .custom-fullscreen-container { position: fixed; inset: 0; background: rgba(4, 4, 6, 0.98); z-index: 9999; display: none; align-items: center; justify-content: center; }
+        .custom-fullscreen-container.active { display: flex; }
+        .fullscreen-video-wrapper { width: 90vw; max-width: 1200px; aspect-ratio: 16 / 9; position: relative; background: #000; }
+        .close-fullscreen-btn { position: absolute; top: -50px; right: 0; width: 40px; height: 40px; background: var(--accent-orange); border: none; color: #fff; font-size: 1.2rem; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+
         .skills-grid { display: flex; flex-wrap: wrap; gap: 0.8rem; }
-        .skill-tag { background: #13131a; border: 1px solid var(--border-color); padding: 0.5rem 1rem; font-size: clamp(0.85rem, 1.5vw, 1rem); transition: all 0.2s; }
-        .skill-tag:hover { border-color: var(--accent-orange); color: var(--accent-orange); }
+        .skill-tag { background: #13131a; border: 1px solid var(--border-color); padding: 0.5rem 1rem; font-size: clamp(0.85rem, 1.5vw, 1rem); }
         .contact-card { text-align: center; }
         .contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 1.5rem; margin-top: 2rem; }
-        .contact-item { font-family: var(--font-cyber); font-size: clamp(0.85rem, 1.5vw, 0.9rem); color: var(--text-main); text-decoration: none; font-weight: 700; text-transform: uppercase; display: flex; align-items: center; gap: 0.5rem; }
-        .contact-item:hover { color: var(--accent-orange); }
+        .contact-item { font-family: var(--font-cyber); font-size: clamp(0.85rem, 1.5vw, 0.9rem); color: var(--text-main); text-decoration: none; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; }
         footer { text-align: center; padding: 3rem 1.5rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.85rem; }
     </style>
 </head>
@@ -435,6 +340,7 @@
                 <a href="#about" class="active">About</a>
                 <a href="#skills">Skills</a>
                 <a href="#projects">Showcase</a>
+                <a href="#history">Experience</a>
                 <a href="#tos">TOS</a>
                 <a href="#contact">Hire Me</a>
             </div>
@@ -484,7 +390,7 @@
         </section>
         <section id="projects" class="container">
             <h2 class="section-title">03. Project Databank</h2>
-            <div class="grid-3">
+            <div class="grid-2">
                 
                 <!-- Showcase Card 1: Vehicles -->
                 <div class="project-card" data-video-src="CS1.mp4">
@@ -499,9 +405,9 @@
                 </div>
 
                 <!-- Showcase Card 2: Flowfield Pathfinder -->
-                <div class="project-card" data-video-src="FF1.mp4">
+                <div class="project-card" data-video-src="FF1S.mp4">
                     <div class="video-container">
-                        <video src="FF1.mp4" loop muted playsinline></video>
+                        <video src="FF1S.mp4" loop muted playsinline></video>
                         <div class="cyber-progress-bar"><div class="cyber-progress-fill"></div></div>
                     </div>
                     <div class="project-info">
@@ -510,28 +416,37 @@
                     </div>
                 </div>
 
-                <!-- Showcase Card 3: Raycast Combat Core -->
-                <div class="project-card" data-video-src="CS1.mp4">
-                    <div class="video-container">
-                        <video src="CS1.mp4" loop muted playsinline></video>
-                        <div class="cyber-progress-bar"><div class="cyber-progress-fill"></div></div>
-                    </div>
-                    <div class="project-info">
-                        <h3>Raycast Ballistics Core</h3>
-                        <p>High-velocity projectile simulation framework featuring dynamic object piercing grids, client-side lag compensation vectors, and server-side cheat verification logs.</p>
-                    </div>
-                </div>
+            </div>
+        </section>
 
+        <!-- Development History Section -->
+        <section id="history" class="container">
+            <h2 class="section-title">04. Development History</h2>
+            
+            <div class="history-card">
+                <div class="history-info">
+                    <h3>Velocità Stradale</h3>
+                    <p>Core Systems Engineer // Advanced vehicle infrastructure deployment</p>
+                </div>
+                <div class="history-date">2025 - PRESENT</div>
+            </div>
+
+            <div class="history-card">
+                <div class="history-info">
+                    <h3>Brick Logic</h3>
+                    <p>Gameplay Systems Programmer // Modular mechanics and framework logic optimization</p>
+                </div>
+                <div class="history-date">2025 - 2026</div>
             </div>
         </section>
 
         <!-- Terms of Service & Refund Architecture Terminal -->
         <section id="tos" class="container">
-            <h2 class="section-title">04. Terms of Service & Refunds</h2>
+            <h2 class="section-title">05. Terms of Service & Refunds</h2>
             <div class="toc-terminal">
                 <div class="toc-line">
                     <div class="toc-tag">[QUALITY_ASSURANCE]</div>
-                    <div class="toc-text">All engineering requests are processed professionally. Focus rests completely on memory efficiency, modular runtime execution, and clear deployment.</div>
+                    <div class="toc-text">All engineering requests are processed professionally. Focus rests completely on memory efficiency, modular runtime execution, and clean deployment.</div>
                 </div>
                 <div class="toc-line">
                     <div class="toc-tag">[LOCK_IN]</div>
@@ -553,7 +468,7 @@
         </section>
 
         <section id="contact" class="container">
-            <h2 class="section-title">05. Establish Connection</h2>
+            <h2 class="section-title">06. Establish Connection</h2>
             <div class="card contact-card">
                 <p>Ready to build? Send an inquiry or direct commission outline via Discord.</p>
                 <div class="contact-links">
@@ -564,7 +479,7 @@
         </section>
     </main>
 
-    <!-- Custom Theater / Fullscreen Overlay Layer -->
+    <!-- Custom Fullscreen Overlay Layer -->
     <div class="custom-fullscreen-container" id="fullscreenOverlay">
         <div class="fullscreen-video-wrapper">
             <button class="close-fullscreen-btn" id="closeFullscreen">&times;</button>
@@ -577,7 +492,6 @@
     </footer>
 
     <script>
-        // Desktop Hover, Click Matrix & Custom Bar Engine
         const cards = document.querySelectorAll('.project-card');
         const overlay = document.getElementById('fullscreenOverlay');
         const fsVideo = document.getElementById('fullscreenVideo');
@@ -588,15 +502,11 @@
             const progressFill = card.querySelector('.cyber-progress-fill');
 
             card.addEventListener('mouseenter', () => {
-                if (window.innerWidth > 900) {
-                    video.play().catch(() => {});
-                }
+                if (window.innerWidth > 900) { video.play().catch(() => {}); }
             });
 
             card.addEventListener('mouseleave', () => {
-                if (window.innerWidth > 900) {
-                    video.pause();
-                }
+                if (window.innerWidth > 900) { video.pause(); }
             });
 
             video.addEventListener('timeupdate', () => {
@@ -612,49 +522,35 @@
             });
         });
 
-        // Close Fullscreen Overlay Functions
         closeFs.addEventListener('click', (e) => {
-            e.stopPropagation();
-            overlay.classList.remove('active');
-            fsVideo.pause();
-            fsVideo.src = "";
+            e.stopPropagation(); overlay.classList.remove('active'); fsVideo.pause(); fsVideo.src = "";
         });
 
         overlay.addEventListener('click', () => {
-            overlay.classList.remove('active');
-            fsVideo.pause();
-            fsVideo.src = "";
+            overlay.classList.remove('active'); fsVideo.pause(); fsVideo.src = "";
         });
 
-        // Mobile Scroll Player Engine
         const mobileObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 const mobVideo = entry.target.querySelector('video');
                 if (window.innerWidth <= 900) {
-                    if (entry.isIntersecting) {
-                        mobVideo.play().catch(() => {});
-                    } else {
-                        mobVideo.pause();
-                    }
+                    if (entry.isIntersecting) { mobVideo.play().catch(() => {}); } 
+                    else { mobVideo.pause(); }
                 }
             });
         }, { root: null, threshold: 0.6 });
 
         cards.forEach(card => mobileObserver.observe(card));
 
-        // Navigation Tracker Engine
         const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('.nav-links a');
-
         const sectionObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const activeId = entry.target.getAttribute('id');
                     navLinks.forEach(link => {
                         link.classList.remove('active');
-                        if (link.getAttribute('href') === `#${activeId}`) {
-                            link.classList.add('active');
-                        }
+                        if (link.getAttribute('href') === `#${activeId}`) { link.classList.add('active'); }
                     });
                 }
             });
