@@ -117,13 +117,21 @@
             padding: clamp(4rem, 10vw, 8rem) 1.5rem clamp(2rem, 5vw, 4rem) 1.5rem;
         }
 
-        .grid-2 {
+        /* Showcase Horizontal Grid Layout */
+        .grid-3 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
         }
 
-        /* Hero Section */
+        @media (max-width: 900px) {
+            .grid-3 {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+        }
+
+        /* Hero Layout Configuration */
         #hero {
             min-height: 90vh;
             display: flex;
@@ -164,14 +172,12 @@
             margin: 0 auto 2.5rem;
         }
 
-        /* Buttons Layout with Flexwrap wrap for small viewports */
         .hero-buttons {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
             gap: 1rem;
         }
-
         .btn {
             display: inline-block;
             font-family: var(--font-cyber);
@@ -212,7 +218,6 @@
             box-shadow: inset 0 0 8px var(--accent-glow);
         }
 
-        /* Content Elements */
         .section-title {
             font-family: var(--font-cyber);
             font-size: clamp(0.9rem, 2vw, 1rem);
@@ -222,105 +227,201 @@
             margin-bottom: 2rem;
         }
 
-        .card, .project-card {
+        .card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             padding: clamp(1.5rem, 3vw, 2rem);
             transition: border-color 0.2s, box-shadow 0.2s;
         }
 
-        .card:hover, .project-card:hover {
+        .card:hover {
             border-color: rgba(255, 85, 0, 0.4);
             box-shadow: 0 0 15px rgba(255, 85, 0, 0.05);
         }
 
-        .card h3, .project-card h3 {
+        .card h3 {
             font-family: var(--font-cyber);
             margin-bottom: 1rem;
             font-size: clamp(1.1rem, 2vw, 1.3rem);
             text-transform: uppercase;
         }
 
-        /* Mobile Breakdowns */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Showcase Cards CSS Layout rules */
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 1.2rem;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: scale(1.04);
+            border-color: var(--accent-orange);
+            box-shadow: 0 10px 25px rgba(255, 85, 0, 0.15);
+            z-index: 10;
+        }
+
+        .video-container {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #16161c;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+        }
+
+        .cyber-progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 5;
+        }
+
+        .cyber-progress-fill {
+            height: 100%;
+            width: 0%;
+            background: var(--accent-orange);
+            box-shadow: 0 0 8px var(--accent-orange);
+            transition: width 0.1s linear;
+        }
+
+        .project-info h3 {
+            font-family: var(--font-cyber);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+            color: var(--text-main);
+        }
+
+        .project-info p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        /* TOS Terminal Layout Frame */
+        .toc-terminal {
+            background: #050507;
+            border: 1px solid var(--border-color);
+            border-left: 3px solid var(--accent-orange);
+            padding: 1.5rem;
+            font-family: var(--font-mono);
+        }
+
+        .toc-line {
+            margin-bottom: 1.2rem;
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .toc-line:last-child {
+            margin-bottom: 0;
+        }
+
+        .toc-tag {
+            color: var(--accent-orange);
+            font-weight: bold;
+            flex-shrink: 0;
+            user-select: none;
+        }
+
+        .toc-text {
+            color: var(--text-main);
+            font-size: 0.95rem;
+        }
+
+        .custom-fullscreen-container {
+            position: fixed;
+            inset: 0;
+            background: rgba(4, 4, 6, 0.98);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .custom-fullscreen-container.active {
+            display: flex;
+        }
+
+        .fullscreen-video-wrapper {
+            width: 90vw;
+            max-width: 1200px;
+            aspect-ratio: 16 / 9;
+            position: relative;
+            border: 1px solid var(--border-color);
+            background: #000;
+        }
+
+        .custom-fullscreen-container video {
+            pointer-events: auto;
+        }
+
+        .close-fullscreen-btn {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            width: 40px;
+            height: 40px;
+            background: var(--accent-orange);
+            border: none;
+            color: #ffffff;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 12px var(--accent-glow);
+            transition: transform 0.2s;
+        }
+
+        .close-fullscreen-btn:hover {
+            transform: scale(1.1);
+        }
+
         @media (max-width: 600px) {
             nav {
                 flex-direction: column;
                 gap: 0.8rem;
                 text-align: center;
             }
-        }
-        /* Skills Layout */
-        .skills-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-        }
-
-        .skill-tag {
-            background: #13131a;
-            border: 1px solid var(--border-color);
-            padding: 0.5rem 1rem;
-            font-size: clamp(0.85rem, 1.5vw, 1rem);
-            transition: all 0.2s;
+            .close-fullscreen-btn {
+                top: 10px;
+                right: 10px;
+                z-index: 10002;
+            }
         }
 
-        .skill-tag:hover {
-            border-color: var(--accent-orange);
-            color: var(--accent-orange);
-        }
-
-        /* Projects Specific scaling rules */
-        .project-card {
-            position: relative;
-        }
-
-        .project-status {
-            position: absolute;
-            top: clamp(1rem, 3vw, 2rem);
-            right: clamp(1rem, 3vw, 2rem);
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--accent-orange);
-            font-weight: 700;
-        }
-
-        /* Contact Section */
-        .contact-card {
-            text-align: center;
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .contact-item {
-            font-family: var(--font-cyber);
-            font-size: clamp(0.85rem, 1.5vw, 0.9rem);
-            color: var(--text-main);
-            text-decoration: none;
-            font-weight: 700;
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .contact-item:hover {
-            color: var(--accent-orange);
-        }
-
-        footer {
-            text-align: center;
-            padding: 3rem 1.5rem;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-muted);
-            font-size: 0.85rem;
-        }
+        .skills-grid { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+        .skill-tag { background: #13131a; border: 1px solid var(--border-color); padding: 0.5rem 1rem; font-size: clamp(0.85rem, 1.5vw, 1rem); transition: all 0.2s; }
+        .skill-tag:hover { border-color: var(--accent-orange); color: var(--accent-orange); }
+        .contact-card { text-align: center; }
+        .contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 1.5rem; margin-top: 2rem; }
+        .contact-item { font-family: var(--font-cyber); font-size: clamp(0.85rem, 1.5vw, 0.9rem); color: var(--text-main); text-decoration: none; font-weight: 700; text-transform: uppercase; display: flex; align-items: center; gap: 0.5rem; }
+        .contact-item:hover { color: var(--accent-orange); }
+        footer { text-align: center; padding: 3rem 1.5rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.85rem; }
     </style>
 </head>
 <body>
@@ -334,6 +435,7 @@
                 <a href="#about" class="active">About</a>
                 <a href="#skills">Skills</a>
                 <a href="#projects">Showcase</a>
+                <a href="#tos">TOS</a>
                 <a href="#contact">Hire Me</a>
             </div>
         </nav>
@@ -342,12 +444,12 @@
     <main>
         <section id="hero">
             <div class="hero-content">
-                <div class="badge">Experienced Lua Developer 3.5+ Years!</div>
+                <div class="badge">HiddenDevs Verified Lua Developer</div>
                 <h1>TheDevKing6</h1>
                 <p class="subtitle">Advanced Luau Scripting & Systems Architecture</p>
                 <div class="hero-buttons">
                     <a href="#projects" class="btn primary-btn">View Showcases</a>
-                    <a href="#contact" class="btn secondary-btn">Order System</a>
+                    <a href="https://discord.com" target="_blank" class="btn secondary-btn">Order System</a>
                 </div>
             </div>
         </section>
@@ -369,57 +471,180 @@
         <section id="skills" class="container">
             <h2 class="section-title">02. Core Tech Stack</h2>
             <div class="skills-grid">
+                <div class="skill-tag">Modular Scripts</div>
+                <div class="skill-tag">Physics Specialists</div>
+                <div class="skill-tag">Raycast Guns & Projectiles</div>
+                <div class="skill-tag">Custom Vehicle Physics</div>
                 <div class="skill-tag">Luau / Roblox API</div>
                 <div class="skill-tag">Knit Framework</div>
-                <div class="skill-tag">DataStore2 / ProfileService</div>
+                <div class="skill-tag">ProfileService & Data Security</div>
                 <div class="skill-tag">OOP Architecture</div>
                 <div class="skill-tag">Network Optimization</div>
-                <div class="skill-tag">UI Scripting / Fusion</div>
+            </div>
+        </section>
+        <section id="projects" class="container">
+            <h2 class="section-title">03. Project Databank</h2>
+            <div class="grid-3">
+                
+                <!-- Showcase Card 1: Vehicles -->
+                <div class="project-card" data-video-src="CS1.mp4">
+                    <div class="video-container">
+                        <video src="CS1.mp4" loop muted playsinline></video>
+                        <div class="cyber-progress-bar"><div class="cyber-progress-fill"></div></div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Custom Vehicle Suspension</h3>
+                        <p>This custom vehicle system features smooth suspension, anti-flip stabilization, and bounce dampening to ensure your cars handle perfectly without lagging.</p>
+                    </div>
+                </div>
+
+                <!-- Showcase Card 2: Flowfield Pathfinder -->
+                <div class="project-card" data-video-src="FF1.mp4">
+                    <div class="video-container">
+                        <video src="FF1.mp4" loop muted playsinline></video>
+                        <div class="cyber-progress-bar"><div class="cyber-progress-fill"></div></div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Dynamic Flowfield Pathfinding</h3>
+                        <p>This dynamic flowfield system optimizes RTS unit pathfinding by allowing workers to automatically navigate between the town hall and resource nodes. It constantly updates map tiles in real time so units instantly find the fastest possible route to harvest and deposit goods.</p>
+                    </div>
+                </div>
+
+                <!-- Showcase Card 3: Raycast Combat Core -->
+                <div class="project-card" data-video-src="CS1.mp4">
+                    <div class="video-container">
+                        <video src="CS1.mp4" loop muted playsinline></video>
+                        <div class="cyber-progress-bar"><div class="cyber-progress-fill"></div></div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Raycast Ballistics Core</h3>
+                        <p>High-velocity projectile simulation framework featuring dynamic object piercing grids, client-side lag compensation vectors, and server-side cheat verification logs.</p>
+                    </div>
+                </div>
+
             </div>
         </section>
 
-        <section id="projects" class="container">
-            <h2 class="section-title">03. Project Databank</h2>
-            <div class="grid-2">
-                <div class="project-card">
-                    <div class="project-status">Operational</div>
-                    <h3>Custom Combat Engine</h3>
-                    <p>Raycast hitbox detection, client-side visual prediction, and server-side verification networks.</p>
+        <!-- Terms of Service & Refund Architecture Terminal -->
+        <section id="tos" class="container">
+            <h2 class="section-title">04. Terms of Service & Refunds</h2>
+            <div class="toc-terminal">
+                <div class="toc-line">
+                    <div class="toc-tag">[QUALITY_ASSURANCE]</div>
+                    <div class="toc-text">All engineering requests are processed professionally. Focus rests completely on memory efficiency, modular runtime execution, and clear deployment.</div>
                 </div>
-                <div class="project-card">
-                    <div class="project-status">Operational</div>
-                    <h3>Global Inventory & Data System</h3>
-                    <p>Secure item trading, crash-resilient session locking via ProfileService, and real-time UI binding.</p>
+                <div class="toc-line">
+                    <div class="toc-tag">[LOCK_IN]</div>
+                    <div class="toc-text">Once commission architecture initializes and codebase execution begins, cancellations do not qualify for any refund parameters.</div>
+                </div>
+                <div class="toc-line">
+                    <div class="toc-tag">[REFUND_SCOPE]</div>
+                    <div class="toc-text">Refunds are exclusively issued if a project block cannot be finished due to verified developer inability to meet original scope, or where critical system faults are clearly my engineering error.</div>
+                </div>
+                <div class="toc-line">
+                    <div class="toc-tag">[REJECTION]</div>
+                    <div class="toc-text">Client dissatisfaction stemming from sudden changes in personal reference, feature re-routing, or aesthetic tastes mid-development does not constitute a valid reason for a refund.</div>
+                </div>
+                <div class="toc-line">
+                    <div class="toc-tag">[COMM_LINE]</div>
+                    <div class="toc-text">Constant dialogue is mandatory. Open verification loops ensure structural sync and let us identify and patch architectural bugs instantly.</div>
                 </div>
             </div>
         </section>
 
         <section id="contact" class="container">
-            <h2 class="section-title">04. Establish Connection</h2>
+            <h2 class="section-title">05. Establish Connection</h2>
             <div class="card contact-card">
                 <p>Ready to build? Send an inquiry or direct commission outline via Discord.</p>
                 <div class="contact-links">
-                    <a href="#" class="contact-item"><i class="fab fa-discord"></i> Discord: @thedevking6</a>
+                    <a href="https://discord.com" target="_blank" class="contact-item"><i class="fab fa-discord"></i> Open Discord Profile</a>
                     <a href="https://github.com" target="_blank" class="contact-item"><i class="fab fa-github"></i> GitHub</a>
                 </div>
             </div>
         </section>
     </main>
 
+    <!-- Custom Theater / Fullscreen Overlay Layer -->
+    <div class="custom-fullscreen-container" id="fullscreenOverlay">
+        <div class="fullscreen-video-wrapper">
+            <button class="close-fullscreen-btn" id="closeFullscreen">&times;</button>
+            <video id="fullscreenVideo" controls autoplay style="width:100%; height:100%;"></video>
+        </div>
+    </div>
+
     <footer>
         <p>&copy; 2026 TheDevKing6. All system operations logged.</p>
     </footer>
 
     <script>
-        // Dynamic Navigation Intersection Engine
+        // Desktop Hover, Click Matrix & Custom Bar Engine
+        const cards = document.querySelectorAll('.project-card');
+        const overlay = document.getElementById('fullscreenOverlay');
+        const fsVideo = document.getElementById('fullscreenVideo');
+        const closeFs = document.getElementById('closeFullscreen');
+
+        cards.forEach(card => {
+            const video = card.querySelector('video');
+            const progressFill = card.querySelector('.cyber-progress-fill');
+
+            card.addEventListener('mouseenter', () => {
+                if (window.innerWidth > 900) {
+                    video.play().catch(() => {});
+                }
+            });
+
+            card.addEventListener('mouseleave', () => {
+                if (window.innerWidth > 900) {
+                    video.pause();
+                }
+            });
+
+            video.addEventListener('timeupdate', () => {
+                const percent = (video.currentTime / video.duration) * 100;
+                progressFill.style.width = `${percent}%`;
+            });
+
+            card.addEventListener('click', () => {
+                const videoSrc = card.getAttribute('data-video-src');
+                fsVideo.src = videoSrc;
+                overlay.classList.add('active');
+                fsVideo.play().catch(() => {});
+            });
+        });
+
+        // Close Fullscreen Overlay Functions
+        closeFs.addEventListener('click', (e) => {
+            e.stopPropagation();
+            overlay.classList.remove('active');
+            fsVideo.pause();
+            fsVideo.src = "";
+        });
+
+        overlay.addEventListener('click', () => {
+            overlay.classList.remove('active');
+            fsVideo.pause();
+            fsVideo.src = "";
+        });
+
+        // Mobile Scroll Player Engine
+        const mobileObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const mobVideo = entry.target.querySelector('video');
+                if (window.innerWidth <= 900) {
+                    if (entry.isIntersecting) {
+                        mobVideo.play().catch(() => {});
+                    } else {
+                        mobVideo.pause();
+                    }
+                }
+            });
+        }, { root: null, threshold: 0.6 });
+
+        cards.forEach(card => mobileObserver.observe(card));
+
+        // Navigation Tracker Engine
         const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('.nav-links a');
-
-        const observerOptions = {
-            root: null,
-            threshold: 0.2,
-            rootMargin: "-15% 0px -35% 0px"
-        };
 
         const sectionObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -433,11 +658,9 @@
                     });
                 }
             });
-        }, observerOptions);
+        }, { root: null, threshold: 0.2, rootMargin: "-15% 0px -35% 0px" });
 
-        sections.forEach(section => {
-            sectionObserver.observe(section);
-        });
+        sections.forEach(section => sectionObserver.observe(section));
     </script>
 </body>
 </html>
