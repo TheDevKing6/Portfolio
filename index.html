@@ -94,13 +94,13 @@
 
         .nav-links {
             display: flex;
-            gap: max(1rem, 2vw);
+            gap: max(0.8rem, 1.5vw);
         }
 
         .nav-links a {
             color: var(--text-muted);
             text-decoration: none;
-            font-size: clamp(0.8rem, 1.5vw, 0.95rem);
+            font-size: clamp(0.75rem, 1.3vw, 0.9rem);
             text-transform: uppercase;
             transition: color 0.2s;
         }
@@ -109,7 +109,6 @@
             color: var(--accent-orange);
             text-shadow: 0 0 8px var(--accent-glow);
         }
-
         /* Layout Structural Blocks */
         .container {
             max-width: 1100px;
@@ -137,6 +136,7 @@
             letter-spacing: 1px;
             margin-bottom: 1.5rem;
         }
+
         #hero h1 {
             font-family: var(--font-cyber);
             font-size: clamp(2.2rem, 7vw, 4rem);
@@ -231,6 +231,39 @@
             gap: 1.5rem;
         }
 
+        /* Game Profile Graphic Frame */
+        .game-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 2rem;
+            align-items: center;
+            transition: border-color 0.2s;
+        }
+
+        .game-card:hover { border-color: var(--accent-orange); }
+        .game-cover { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border: 1px solid #16161c; }
+        .game-details h3 { font-family: var(--font-cyber); font-size: 1.4rem; margin-bottom: 0.5rem; text-transform: uppercase; }
+
+        .game-stats {
+            display: inline-block;
+            background: rgba(255, 85, 0, 0.08);
+            color: var(--accent-orange);
+            padding: 0.2rem 0.8rem;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 85, 0, 0.2);
+        }
+
+        .game-details p { color: var(--text-muted); font-size: 0.95rem; }
+
+        @media (max-width: 650px) {
+            .game-card { grid-template-columns: 1fr; gap: 1.5rem; text-align: center; }
+            .game-cover { max-width: 250px; margin: 0 auto; }
+        }
         .project-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -339,6 +372,7 @@
             <div class="nav-links">
                 <a href="#about" class="active">About</a>
                 <a href="#skills">Skills</a>
+                <a href="#games">Games</a>
                 <a href="#projects">Showcase</a>
                 <a href="#history">Experience</a>
                 <a href="#tos">TOS</a>
@@ -355,7 +389,7 @@
                 <p class="subtitle">Advanced Luau Scripting & Systems Architecture</p>
                 <div class="hero-buttons">
                     <a href="#projects" class="btn primary-btn">View Showcases</a>
-                    <a href="https://discord.com/users/875050403996237845" target="_blank" class="btn secondary-btn">Order System</a>
+                    <a href="https://discord.com" target="_blank" class="btn secondary-btn">Order System</a>
                 </div>
             </div>
         </section>
@@ -388,8 +422,21 @@
                 <div class="skill-tag">Network Optimization</div>
             </div>
         </section>
+
+        <!-- Games Worked On Layer -->
+        <section id="games" class="container">
+            <h2 class="section-title">03. Shipped Game Deployments</h2>
+            <div class="game-card">
+                <img src="TCS.PNG" alt="The Cyclops Submarine RP" class="game-cover">
+                <div class="game-details">
+                    <h3>The Cyclops Submarine RP [Early Access]</h3>
+                    <div class="game-stats"><i class="fas fa-users"></i> 1.5M+ VISITS</div>
+                    <p>Engineered the core Seamoth modular vehicle system. Integrated network-efficient movement parameters, customized buoyancy physics matrices, and modular sub-system data updates.</p>
+                </div>
+            </div>
+        </section>
         <section id="projects" class="container">
-            <h2 class="section-title">03. Project Databank</h2>
+            <h2 class="section-title">04. Project Databank</h2>
             <div class="grid-2">
                 
                 <!-- Showcase Card 1: Vehicles -->
@@ -421,7 +468,7 @@
 
         <!-- Development History Section -->
         <section id="history" class="container">
-            <h2 class="section-title">04. Development History</h2>
+            <h2 class="section-title">05. Development History</h2>
             
             <div class="history-card">
                 <div class="history-info">
@@ -440,9 +487,8 @@
             </div>
         </section>
 
-        <!-- Terms of Service & Refund Architecture Terminal -->
         <section id="tos" class="container">
-            <h2 class="section-title">05. Terms of Service & Refunds</h2>
+            <h2 class="section-title">06. Terms of Service & Refunds</h2>
             <div class="toc-terminal">
                 <div class="toc-line">
                     <div class="toc-tag">[QUALITY_ASSURANCE]</div>
@@ -468,18 +514,17 @@
         </section>
 
         <section id="contact" class="container">
-            <h2 class="section-title">06. Establish Connection</h2>
+            <h2 class="section-title">07. Establish Connection</h2>
             <div class="card contact-card">
                 <p>Ready to build? Send an inquiry or direct commission outline via Discord.</p>
                 <div class="contact-links">
-                    <a href="https://https://discord.com/users/875050403996237845" target="_blank" class="contact-item"><i class="fab fa-discord"></i> Open Discord Profile</a>
+                    <a href="https://discord.com" target="_blank" class="contact-item"><i class="fab fa-discord"></i> Open Discord Profile</a>
                     <a href="https://github.com" target="_blank" class="contact-item"><i class="fab fa-github"></i> GitHub</a>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Custom Fullscreen Overlay Layer -->
     <div class="custom-fullscreen-container" id="fullscreenOverlay">
         <div class="fullscreen-video-wrapper">
             <button class="close-fullscreen-btn" id="closeFullscreen">&times;</button>
