@@ -235,17 +235,17 @@
         .game-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
-            padding: 1.5rem;
+            padding: 2rem;
             display: grid;
-            grid-template-columns: 200px 1fr;
+            grid-template-columns: 280px 1fr;
             gap: 2rem;
             align-items: center;
             transition: border-color 0.2s;
         }
 
         .game-card:hover { border-color: var(--accent-orange); }
-        .game-cover { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border: 1px solid #16161c; }
-        .game-details h3 { font-family: var(--font-cyber); font-size: 1.4rem; margin-bottom: 0.5rem; text-transform: uppercase; }
+        .game-cover { width: 100%; height: auto; object-fit: contain; border: 1px solid #16161c; }
+        .game-details h3 { font-family: var(--font-cyber); font-size: 1.3rem; margin-bottom: 0.5rem; text-transform: uppercase; }
 
         .game-stats {
             display: inline-block;
@@ -254,15 +254,15 @@
             padding: 0.2rem 0.8rem;
             font-size: 0.85rem;
             font-weight: bold;
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             border: 1px solid rgba(255, 85, 0, 0.2);
         }
 
-        .game-details p { color: var(--text-muted); font-size: 0.95rem; }
+        .game-details p { color: var(--text-main); font-size: 1rem; margin-top: 0.5rem; }
 
-        @media (max-width: 650px) {
-            .game-card { grid-template-columns: 1fr; gap: 1.5rem; text-align: center; }
-            .game-cover { max-width: 250px; margin: 0 auto; }
+        @media (max-width: 768px) {
+            .game-card { grid-template-columns: 1fr; gap: 1.5rem; text-align: center; padding: 1.5rem; }
+            .game-cover { max-width: 280px; margin: 0 auto; }
         }
         .project-card {
             background: var(--bg-card);
@@ -423,15 +423,15 @@
             </div>
         </section>
 
-        <!-- Games Worked On Layer -->
+        <!-- Shipped Games (Fixed Casings + Fixed Text layout) -->
         <section id="games" class="container">
             <h2 class="section-title">03. Shipped Game Deployments</h2>
             <div class="game-card">
-                <img src="TCS.PNG" alt="The Cyclops Submarine RP" class="game-cover">
+                <img src="TCS.png" alt="The Cyclops Submarine RP" class="game-cover">
                 <div class="game-details">
                     <h3>The Cyclops Submarine RP [Early Access]</h3>
                     <div class="game-stats"><i class="fas fa-users"></i> 1.5M+ VISITS</div>
-                    <p>Engineered the core Seamoth modular vehicle system. Integrated network-efficient movement parameters, customized buoyancy physics matrices, and modular sub-system data updates.</p>
+                    <p>I completely coded the custom Seamoth driving system. It handles network replication, custom underwater buoyancy physics, and smooth sub-system modular data streams.</p>
                 </div>
             </div>
         </section>
